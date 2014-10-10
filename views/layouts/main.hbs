@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+  <title>{{title}}</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+  <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="logo">
+        <a href="#/contacts"></a>
+      </div>
+      <ul class="navigation">
+        <li>
+          <a href="#/auction">Auction Room</a>
+        </li>
+        <li>
+          <a href="#/contacts">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="contents">
+    <div class="auction" style="display: none;">
+      {{> itemDescription}}
+    </div>
+    <div class="contacts" style="display: none;">
+      {{> contactMenuItem}}
+    </div>
+  </div>
+
+  <footer>
+    <div class="clearfix">
+      <div class="connect">
+        <a href="#" target="_blank" class="facebook"></a><a href="#" target="_blank" class="googleplus"></a><a href="#" target="_blank" class="twitter"></a><a href="#/" target="_blank" class="tumbler"></a>
+      </div>
+      <p>
+        © 2014 All Rights Reserved.
+      </p>
+    </div>
+  </footer>
+  <script src="/js/Application.js"></script>
+</body>
+</html>
