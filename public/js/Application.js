@@ -2,35 +2,23 @@ $(function() {
   var userId = 'user-' + Math.floor((Math.random() * 100) + 1),
       socket = io.connect('http://localhost:8080'),
       auctRoom = $('.auction-room'),
-      initHash = location.hash,
+      navigation = $('.navigation'),
       container;
 
-  if (initHash === '') {
-    initHash = 'auction';
-  }
-  container = $('.' + initHash.replace('#/', '')).show();
-  container.siblings().hide();
-  $('.active').removeClass('active');
-  $('a[href="'+ initHash +'"]').parent().addClass('active');
-
-  $(window).on('hashchange', function() {
-    var hash = location.hash,
-        container = $('.' + hash.replace('#/', ''));
-    
-    $('.active').removeClass('active');
-    $('a[href="'+ hash +'"]').parent().addClass('active');
-    container.siblings().hide();
-    container.show();
-  });
+  // handle navigation
+  changeActiveTab();
+  $(window).on('hashchange', changeActiveTab);
 
   socket.on('update-price', function(data) {
     var priceContainer = auctRoom.find('.item-price');
-    priceContainer.html(data.newValue);
+    priceContainer.html('$' + data.newValue);
   });
 
   auctRoom.find('.place-bid').on('click', function(e) {
     var bidInput = auctRoom.find('.bid-value'),
         msgContainer = auctRoom.find('.user-notification');
+
+    // notify everyone about new bid
     socket.emit('place_bid', {
       user: userId,
       value: +bidInput.val(),
@@ -48,6 +36,16 @@ $(function() {
 
     msgContainer.empty();
     bidInput.val('');
+  }
+
+  function changeActiveTab() {
+    var hash = location.hash || '#/auction',
+        container = $('.' + hash.replace('#/', ''));
+    
+    navigation.find('.active').removeClass('active');
+    navigation.find('a[href="'+ hash +'"]').parent().addClass('active');
+    container.siblings().hide();
+    container.show();
   }
 
 });

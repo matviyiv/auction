@@ -1,3 +1,3 @@
-exports.settings = {
-  
+exports.appSettings = {
+  title: 'Auction Room'
 };

@@ -1,17 +1,13 @@
 var express = require('express'),
     router  = express.Router(),
-    title   = 'Auction Online';
+    settings   = require('../settings').appSettings;
 
 router.use('/bid', require('./bids'));
 
-/**
-* Home page
-* Inject common things here
-*/
 router.get('/', function(req, res) {
-  req.title = title;
+  req.title = settings.title;
   res.render('main', {
-    title: title
+    title: settings.title
   });
 });
 
