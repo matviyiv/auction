@@ -1,3 +1,7 @@
+/**
+ * This is a single page application immitating auction behaviour,
+ * but because currently it is not many lines Java Script it is all placed in one file
+ */
 $(function() {
   var userId = 'user-' + Math.floor((Math.random() * 100) + 1),
       socket = io.connect('http://localhost:8080'),
